@@ -12,6 +12,7 @@ func TestBubbleSortOrderDESC(t *testing.T) {
 	BubbleSort(elements)
 	// Validation
 	// ここのケースは全て通す必要がある
+	// カバレージはあくまで指針でエンジニア側でそのエビデンスを取る必要がある
 	if elements[0] != 9 {
 		t.Error("first elements should be 9")
 	}
