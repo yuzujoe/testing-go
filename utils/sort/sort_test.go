@@ -2,14 +2,16 @@ package sort
 
 import "testing"
 
-func TestBubbleSort(t *testing.T) {
+// go test -cover coverage command
+
+func TestBubbleSortOrderDESC(t *testing.T) {
 	// Init
-	elements := []int{9, 8, 7, 5, 3, 2, 1, 4, 6, 0}
+	elements := []int{7, 9, 5, 3, 1, 0, 4, 6, 8, 2}
 
 	// Execution
 	BubbleSort(elements)
-
 	// Validation
+	// ここのケースは全て通す必要がある
 	if elements[0] != 9 {
 		t.Error("first elements should be 9")
 	}
