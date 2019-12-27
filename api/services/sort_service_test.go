@@ -2,6 +2,11 @@ package services
 
 import "testing"
 
+func TestConstants(t *testing.T) {
+	if privateConst != "private" {
+		t.Error("privateConst should be private")
+	}
+}
 func TestSort(t *testing.T) {
 	elements := []int{7, 9, 5, 3, 1, 0, 4, 6, 8, 2}
 
