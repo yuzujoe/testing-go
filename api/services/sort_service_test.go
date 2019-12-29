@@ -1,22 +1,47 @@
 package services
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+	"testing-go/api/utils/sort"
+)
 
-func TestConstants(t *testing.T) {
-	if privateConst != "private" {
-		t.Error("privateConst should be private")
-	}
-}
 func TestSort(t *testing.T) {
-	elements := []int{7, 9, 5, 3, 1, 0, 4, 6, 8, 2}
-
+	elements := sort.GetElements(10)
 	Sort(elements)
 
-	if elements[0] != 9 {
-		t.Error("first elements should be 9")
+	if elements[0] != 0 {
+		t.Error("first elements should be 0")
 	}
 
-	if elements[len(elements)-1] != 0 {
-		t.Error("last element shoul be 0")
+	if elements[len(elements)-1] != 9 {
+		t.Error("last element shoul be 9")
+	}
+}
+
+func TestSortMoreThan10000(t *testing.T) {
+	elements := sort.GetElements(10001)
+	Sort(elements)
+	fmt.Println(elements)
+	if elements[0] != 1 {
+		t.Error("first elements should be 0")
+	}
+
+	if elements[len(elements)-1] != 10001 {
+		t.Error("last element shoul be 10000")
+	}
+}
+
+func BenchmarkBubbleSort10k(b *testing.B) {
+	elements := sort.GetElements(20000)
+	for i := 0; i < b.N; i++ {
+		Sort(elements)
+	}
+}
+
+func BenchmarkBubbleSort100k(b *testing.B) {
+	elements := sort.GetElements(100000)
+	for i := 0; i < b.N; i++ {
+		Sort(elements)
 	}
 }
