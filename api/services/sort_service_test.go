@@ -1,34 +1,32 @@
 package services
 
 import (
-	"fmt"
 	"testing"
 	"testing-go/api/utils/sort"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestSort(t *testing.T) {
 	elements := sort.GetElements(10)
 	Sort(elements)
 
+	assert.NotNil(t, elements)
+	assert.EqualValues(t, 0, elements[0])
+	assert.EqualValues(t, 9, elements[len(elements)-1])
+
+}
+
+func TestSortMoreThan10000(t *testing.T) {
+	elements := sort.GetElements(20001)
+	Sort(elements)
+
 	if elements[0] != 0 {
 		t.Error("first elements should be 0")
 	}
 
-	if elements[len(elements)-1] != 9 {
-		t.Error("last element shoul be 9")
-	}
-}
-
-func TestSortMoreThan10000(t *testing.T) {
-	elements := sort.GetElements(10001)
-	Sort(elements)
-	fmt.Println(elements)
-	if elements[0] != 1 {
-		t.Error("first elements should be 0")
-	}
-
-	if elements[len(elements)-1] != 10001 {
-		t.Error("last element shoul be 10000")
+	if elements[len(elements)-1] != 20000 {
+		t.Error("last element shoul be 20000")
 	}
 }
 

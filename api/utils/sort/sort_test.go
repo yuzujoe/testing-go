@@ -1,6 +1,10 @@
 package sort
 
-import "testing"
+import (
+	"fmt"
+	"github.com/stretchr/testify/assert"
+	"testing"
+)
 
 // go test -cover coverage command
 
@@ -8,18 +12,19 @@ func TestBubbleSortIncreasingOrder(t *testing.T) {
 	// Init
 	elements := GetElements(10)
 
+	assert.NotNil(t, elements)
+	assert.EqualValues(t, 10, len(elements))
+	assert.EqualValues(t, 9, elements[0])
+	assert.EqualValues(t, 0, elements[len(elements)-1])
+
 	// Execution
 	BubbleSort(elements)
+	fmt.Println(elements)
 	// Validation
-	// ここのケースは全て通す必要がある
-	// カバレージはあくまで指針でエンジニア側でそのエビデンスを取る必要がある
-	if elements[0] != 10 {
-		t.Error("first elements should be 9")
-	}
-
-	if elements[len(elements)-1] != 1 {
-		t.Error("last element shoul be 0")
-	}
+	assert.NotNil(t, elements)
+	assert.EqualValues(t, 10, len(elements))
+	assert.EqualValues(t, 0, elements[0])
+	assert.EqualValues(t, 9, elements[len(elements)-1])
 
 }
 
@@ -28,13 +33,8 @@ func TestSortIncreasingOrder(t *testing.T) {
 
 	Sort(elements)
 
-	if elements[0] != 1 {
-		t.Error("first elements should be 1")
-	}
-
-	if elements[len(elements)-1] != 10 {
-		t.Error("last element shoul be 9")
-	}
+	assert.EqualValues(t, 0, elements[0], "first elements should be 0")
+	assert.EqualValues(t, 9, elements[len(elements)-1], "last element shoul be 9")
 
 }
 
