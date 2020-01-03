@@ -8,6 +8,7 @@ import (
 )
 
 func TestGetCoutryRestClientError(t *testing.T) {
+	testing.Init()
 	// Execution:
 	coutry, err := GetCoutry("AR")
 
