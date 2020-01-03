@@ -4,11 +4,12 @@ import (
 	"net/http"
 	"testing"
 
+	"github.com/mercadolibre/golang-restclient/rest"
 	"github.com/stretchr/testify/assert"
 )
 
 func TestGetCoutryRestClientError(t *testing.T) {
-	testing.Init()
+	rest.StartMockupServer()
 	// Execution:
 	coutry, err := GetCoutry("AR")
 
@@ -19,6 +20,7 @@ func TestGetCoutryRestClientError(t *testing.T) {
 	assert.EqualValues(t, "Invalid restclient error when getting coutry AR", err.Message)
 }
 func TestGetCoutryNotFound(t *testing.T) {
+	rest.StartMockupServer()
 	coutry, err := GetCoutry("AR")
 
 	assert.Nil(t, coutry)
@@ -35,6 +37,7 @@ func TestGetCoutryInvalidErrorIterface(t *testing.T) {
 	assert.EqualValues(t, "Invalid error interface when getting country AR", err.Message)
 }
 func TestGetCoutryInvalidJsonResponse(t *testing.T) {
+	rest.StartMockupServer()
 	coutry, err := GetCoutry("AR")
 
 	assert.Nil(t, coutry)
@@ -43,6 +46,7 @@ func TestGetCoutryInvalidJsonResponse(t *testing.T) {
 	assert.EqualValues(t, "error when trying to unmarshal countryndata for AR", err.Message)
 }
 func TestGetCoutryNotError(t *testing.T) {
+	rest.StartMockupServer()
 	coutry, err := GetCoutry("AR")
 
 	assert.Nil(t, err)
